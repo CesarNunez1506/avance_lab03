@@ -29,6 +29,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -40,60 +41,69 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
-            Surface(
-                modifier = Modifier.fillMaxSize(),
-                color = MaterialTheme.colorScheme.background
-            ) {
-                GreetingImage(
-                    message = "Happy Birthday Sam!",
-                    from = "From Emma"
-                )
+        setContent {           Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            GreetingCard()
+        }
+
         }
     }
 }
-    @Composable
-    fun GreetingCard() {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Welcome to the Course!",
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "Hello, Student!",
-                fontSize = 20.sp
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            TextField(
-                value = "",
-                onValueChange = {},
-                label = { Text("Enter your name") }
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = { /* Simulación de acción */ }) {
-                Text("Show Greeting")
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
-                contentDescription = "Course Image",
-                modifier = Modifier.size(100.dp)
-            )
-        }
-    }
+@Composable
+fun GreetingCard() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            text = "Welcome to the Course!",
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold
+        )
 
-    @Preview(showBackground = true)
-    @Composable
-    fun PreviewGreetingCard() {
-        GreetingCard()
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Hello, Student!",
+            fontSize = 20.sp
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceAround
+        ) {
+            Button(onClick = { /* Simulación de acción */ }) {
+                Text("Acepta")
+            }
+            Button(onClick = { /* Simulación de acción */ }) {
+                Text("Declino")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Image(
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            contentDescription = "Course Image",
+            modifier = Modifier.size(100.dp)
+        )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewGreetingCard() {
+    GreetingCard()
+}
+
 
 @Preview(showBackground = true)
 @Composable
@@ -151,4 +161,4 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
 
         )
     }
-}}
+}
